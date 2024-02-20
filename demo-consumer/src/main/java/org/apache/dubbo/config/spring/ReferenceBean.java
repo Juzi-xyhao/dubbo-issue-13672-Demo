@@ -468,6 +468,7 @@ public class ReferenceBean<T>
         @SuppressWarnings("unchecked")
         ServiceBean<T> serviceBean =
                 applicationContext.getBeansOfType(ServiceBean.class).get(providerBeanName);
+        //要复现这个issue只要在下面的判断语句里加上“&& SCOPE_LOCAL.equals(serviceBean.getScope())“即可
         if (serviceBean != null && !serviceBean.isExported() ) {
             serviceBean.export();
         }
